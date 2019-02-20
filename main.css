@@ -1,0 +1,25 @@
+.square {
+    height: 30px;
+    width: 30px;
+    border: 1px black solid;
+    cursor: pointer;
+}
+body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.row {
+    display: flex;
+    
+}
+#board {
+    margin: 20px;
+}
+
+.button {
+    padding: 2px;
+    border: 1px grey solid;
+    border-radius: 5px;
+    background: lightgray;
+    margin: 20px;
+    cursor: pointer;
+}
