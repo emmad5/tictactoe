@@ -16,16 +16,20 @@ class Board {
 
     playTurn(square, i) {
         console.log(this.getPosition(i));
+    
         if (!this.isOver(this.board)) {
+            this.x = document.querySelector('.x');
             let mark = document.createElement('div');
             if (square.innerHTML === '') {
                 if (this.isX) {
                     mark.innerHTML = 'x';
+                    this.x.innerHTML = 'Player O, your turn';
                     this.isX = false;
                     square.appendChild(mark);
                 } else {
                     mark.innerHTML = 'o';
                     this.isX = true;
+                    this.x.innerHTML = 'Player X, your turn';
                     square.appendChild(mark);
                 }
             }
