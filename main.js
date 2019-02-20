@@ -2,10 +2,10 @@ document.addEventListener('DOMContentLoaded', () => new Board());
 
 class Board {
     constructor() {
-        this.board = document.querySelectorAll('.square');
-        console.log(document.querySelectorAll('.square'));
+        this.board = Array.from(document.querySelectorAll('.square'));
         this.button = document.querySelector('.button');
         this.playTurn = this.playTurn.bind(this);
+        this.clearBoard = this.clearBoard.bind(this);
         this.isX = true;
         this.button.addEventListener('click', () => this.clearBoard());
             for (let i = 0; i < this.board.length; i++) {
@@ -16,8 +16,7 @@ class Board {
 
     playTurn(square, i) {
         console.log(this.getPosition(i));
-    
-        if (!this.isOver(this.board)) {
+        if (!this.isOver()) {
             this.x = document.querySelector('.x');
             let mark = document.createElement('div');
             if (square.innerHTML === '') {
@@ -26,17 +25,24 @@ class Board {
                     this.x.innerHTML = 'Player O, your turn';
                     this.isX = false;
                     square.appendChild(mark);
+                    if (this.isOver()) {
+                        setTimeout(function () {
+                            alert("game over, X won");
+                        }, 250);
+                    }
                 } else {
                     mark.innerHTML = 'o';
                     this.isX = true;
                     this.x.innerHTML = 'Player X, your turn';
                     square.appendChild(mark);
+                    if (this.isOver()) {
+                        setTimeout(function () { 
+                            alert("game ove, O won"); 
+                        }, 250);   
+                    } 
                 }
             }
-        } else {
-            alert('game over');
-            this.clearBoard();
-        }
+        } 
     }
     isOver() {
         if (this.getPosition(0, this.board) === this.getPosition(1, this.board) && this.getPosition(0, this.board) === this.getPosition(2, this.board)) {
